@@ -56,11 +56,9 @@ static NSString *_APIURL = @"http://2.beacons-kicknate.appspot.com/";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"%@", _response);
     NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:_response
                                                                  options:NSJSONReadingMutableLeaves
                                                                    error:nil];
-    NSLog(@"%@", responseDict);
     _completionBlock (responseDict);
 }
 

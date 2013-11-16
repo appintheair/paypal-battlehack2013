@@ -25,6 +25,18 @@
 		FA58D1DD18381C11005C8239 /* BHbleController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58D1DC18381C11005C8239 /* BHbleController.m */; };
 		FA58D1E018382A24005C8239 /* BHGetDonationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58D1DF18382A24005C8239 /* BHGetDonationDetails.m */; };
 		FA58D1E3183831EA005C8239 /* BHUpdateDonationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58D1E2183831EA005C8239 /* BHUpdateDonationDetails.m */; };
+		FABA5B92183835AA00EB9A76 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B8E183835AA00EB9A76 /* libPayPalMobile.a */; };
+		FABA5B94183835E400EB9A76 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B93183835E400EB9A76 /* AVFoundation.framework */; };
+		FABA5B96183835EA00EB9A76 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B95183835EA00EB9A76 /* AudioToolbox.framework */; };
+		FABA5B98183835F100EB9A76 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B97183835F100EB9A76 /* CoreMedia.framework */; };
+		FABA5B9A183835F900EB9A76 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B99183835F900EB9A76 /* CoreVideo.framework */; };
+		FABA5B9C1838360200EB9A76 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B9B1838360200EB9A76 /* libxml2.dylib */; };
+		FABA5B9E1838360900EB9A76 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B9D1838360900EB9A76 /* MessageUI.framework */; };
+		FABA5BA01838361100EB9A76 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B9F1838361100EB9A76 /* MobileCoreServices.framework */; };
+		FABA5BA21838361800EB9A76 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5BA11838361800EB9A76 /* OpenGLES.framework */; };
+		FABA5BA41838361E00EB9A76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5BA31838361E00EB9A76 /* QuartzCore.framework */; };
+		FABA5BA61838362600EB9A76 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5BA51838362500EB9A76 /* Security.framework */; };
+		FABA5BA81838362E00EB9A76 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5BA71838362E00EB9A76 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +78,21 @@
 		FA58D1DF18382A24005C8239 /* BHGetDonationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHGetDonationDetails.m; sourceTree = "<group>"; };
 		FA58D1E1183831EA005C8239 /* BHUpdateDonationDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHUpdateDonationDetails.h; sourceTree = "<group>"; };
 		FA58D1E2183831EA005C8239 /* BHUpdateDonationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHUpdateDonationDetails.m; sourceTree = "<group>"; };
+		FABA5B8E183835AA00EB9A76 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
+		FABA5B8F183835AA00EB9A76 /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
+		FABA5B90183835AA00EB9A76 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		FABA5B91183835AA00EB9A76 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		FABA5B93183835E400EB9A76 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FABA5B95183835EA00EB9A76 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FABA5B97183835F100EB9A76 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FABA5B99183835F900EB9A76 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		FABA5B9B1838360200EB9A76 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		FABA5B9D1838360900EB9A76 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		FABA5B9F1838361100EB9A76 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FABA5BA11838361800EB9A76 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		FABA5BA31838361E00EB9A76 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FABA5BA51838362500EB9A76 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FABA5BA71838362E00EB9A76 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +100,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA58D1A218381980005C8239 /* CoreGraphics.framework in Frameworks */,
 				FA58D1A418381980005C8239 /* UIKit.framework in Frameworks */,
+				FABA5BA81838362E00EB9A76 /* SystemConfiguration.framework in Frameworks */,
+				FABA5BA61838362600EB9A76 /* Security.framework in Frameworks */,
+				FABA5BA41838361E00EB9A76 /* QuartzCore.framework in Frameworks */,
+				FABA5BA21838361800EB9A76 /* OpenGLES.framework in Frameworks */,
+				FABA5BA01838361100EB9A76 /* MobileCoreServices.framework in Frameworks */,
+				FABA5B9E1838360900EB9A76 /* MessageUI.framework in Frameworks */,
+				FABA5B9C1838360200EB9A76 /* libxml2.dylib in Frameworks */,
+				FABA5B9A183835F900EB9A76 /* CoreVideo.framework in Frameworks */,
+				FABA5B98183835F100EB9A76 /* CoreMedia.framework in Frameworks */,
+				FABA5B96183835EA00EB9A76 /* AudioToolbox.framework in Frameworks */,
+				FABA5B94183835E400EB9A76 /* AVFoundation.framework in Frameworks */,
+				FA58D1A218381980005C8239 /* CoreGraphics.framework in Frameworks */,
+				FABA5B92183835AA00EB9A76 /* libPayPalMobile.a in Frameworks */,
 				FA58D1A018381980005C8239 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +153,18 @@
 		FA58D19E18381980005C8239 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FABA5BA71838362E00EB9A76 /* SystemConfiguration.framework */,
+				FABA5BA51838362500EB9A76 /* Security.framework */,
+				FABA5BA31838361E00EB9A76 /* QuartzCore.framework */,
+				FABA5BA11838361800EB9A76 /* OpenGLES.framework */,
+				FABA5B9F1838361100EB9A76 /* MobileCoreServices.framework */,
+				FABA5B9D1838360900EB9A76 /* MessageUI.framework */,
+				FABA5B9B1838360200EB9A76 /* libxml2.dylib */,
+				FABA5B99183835F900EB9A76 /* CoreVideo.framework */,
+				FABA5B97183835F100EB9A76 /* CoreMedia.framework */,
+				FABA5B95183835EA00EB9A76 /* AudioToolbox.framework */,
+				FABA5B93183835E400EB9A76 /* AVFoundation.framework */,
+				FABA5B8D183835AA00EB9A76 /* PayPalMobile */,
 				FA58D1D518381AF7005C8239 /* BLE */,
 				FA58D19F18381980005C8239 /* Foundation.framework */,
 				FA58D1A118381980005C8239 /* CoreGraphics.framework */,
@@ -196,6 +247,17 @@
 				FA58D1DC18381C11005C8239 /* BHbleController.m */,
 			);
 			name = ble;
+			sourceTree = "<group>";
+		};
+		FABA5B8D183835AA00EB9A76 /* PayPalMobile */ = {
+			isa = PBXGroup;
+			children = (
+				FABA5B8E183835AA00EB9A76 /* libPayPalMobile.a */,
+				FABA5B8F183835AA00EB9A76 /* PayPalMobile.h */,
+				FABA5B90183835AA00EB9A76 /* PayPalPayment.h */,
+				FABA5B91183835AA00EB9A76 /* PayPalPaymentViewController.h */,
+			);
+			path = PayPalMobile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,6 +494,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BattlehackHackIOSClient/BattlehackHackIOSClient-Prefix.pch";
 				INFOPLIST_FILE = "BattlehackHackIOSClient/BattlehackHackIOSClient-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/alex/Documents/Work/other/battlehack/moscow/BattlehackHackIOSClient/PayPalMobile,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-lc++",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -445,6 +515,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BattlehackHackIOSClient/BattlehackHackIOSClient-Prefix.pch";
 				INFOPLIST_FILE = "BattlehackHackIOSClient/BattlehackHackIOSClient-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/alex/Documents/Work/other/battlehack/moscow/BattlehackHackIOSClient/PayPalMobile,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-lc++",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -511,6 +589,7 @@
 				FA58D1D018381980005C8239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA58D1D118381980005C8239 /* Build configuration list for PBXNativeTarget "BattlehackHackIOSClientTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +598,7 @@
 				FA58D1D318381980005C8239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
