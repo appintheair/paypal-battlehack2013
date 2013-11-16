@@ -22,6 +22,7 @@
 		FA58D1C918381980005C8239 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA58D1C718381980005C8239 /* InfoPlist.strings */; };
 		FA58D1CB18381980005C8239 /* BattlehackHackIOSClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58D1CA18381980005C8239 /* BattlehackHackIOSClientTests.m */; };
 		FA58D1D918381AF7005C8239 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58D1D718381AF7005C8239 /* BLE.m */; };
+		FA58D1DD18381C11005C8239 /* BHbleController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58D1DC18381C11005C8239 /* BHbleController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		FA58D1D618381AF7005C8239 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		FA58D1D718381AF7005C8239 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		FA58D1D818381AF7005C8239 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		FA58D1DB18381C11005C8239 /* BHbleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHbleController.h; sourceTree = "<group>"; };
+		FA58D1DC18381C11005C8239 /* BHbleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHbleController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,7 @@
 		FA58D1A518381980005C8239 /* BattlehackHackIOSClient */ = {
 			isa = PBXGroup;
 			children = (
+				FA58D1DA18381B25005C8239 /* ble */,
 				FA58D1D418381AB9005C8239 /* handlers */,
 				FA58D1AE18381980005C8239 /* BHAppDelegate.h */,
 				FA58D1AF18381980005C8239 /* BHAppDelegate.m */,
@@ -173,6 +177,15 @@
 				FA58D1D818381AF7005C8239 /* BLEDefines.h */,
 			);
 			path = BLE;
+			sourceTree = "<group>";
+		};
+		FA58D1DA18381B25005C8239 /* ble */ = {
+			isa = PBXGroup;
+			children = (
+				FA58D1DB18381C11005C8239 /* BHbleController.h */,
+				FA58D1DC18381C11005C8239 /* BHbleController.m */,
+			);
+			name = ble;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +288,7 @@
 			files = (
 				FA58D1B618381980005C8239 /* BHViewController.m in Sources */,
 				FA58D1B018381980005C8239 /* BHAppDelegate.m in Sources */,
+				FA58D1DD18381C11005C8239 /* BHbleController.m in Sources */,
 				FA58D1AC18381980005C8239 /* main.m in Sources */,
 				FA58D1D918381AF7005C8239 /* BLE.m in Sources */,
 			);

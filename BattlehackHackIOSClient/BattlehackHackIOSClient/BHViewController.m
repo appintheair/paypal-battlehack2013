@@ -7,8 +7,12 @@
 //
 
 #import "BHViewController.h"
+#import "BHbleController.h"
 
 @interface BHViewController ()
+{
+    BHbleController *_controller;
+}
 
 @end
 
@@ -18,6 +22,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _controller = [BHbleController sharedInstance];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_controller searchForPeripherals];
 }
 
 - (void)didReceiveMemoryWarning
