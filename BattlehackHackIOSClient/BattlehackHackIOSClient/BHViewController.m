@@ -27,6 +27,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [_controller setConnectCompletionBlock:^(NSString *uuid) {
+        NSLog(@"%@ UUID !!!!!", uuid);
+    }];
     [_controller searchForPeripherals];
 }
 

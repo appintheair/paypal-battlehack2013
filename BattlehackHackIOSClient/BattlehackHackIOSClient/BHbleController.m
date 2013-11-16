@@ -61,6 +61,13 @@ static BHbleController *_instance;
     _disconnectCompletionBlock = completionBlock;
 }
 
+- (void)pushToDevice:(NSString *)str
+{
+    str = [NSString stringWithFormat:@"%@\r\n", str];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [_shield write:data];
+}
+
 - (void)search
 {
     if (!_shield.activePeripheral)
@@ -85,13 +92,11 @@ static BHbleController *_instance;
 
 - (void)bleDidConnect
 {
-    NSLog(@"%@", _shield.activePeripheral.identifier);
     _connectCompletionBlock([_shield.activePeripheral.identifier UUIDString]);
 }
 
 - (void)bleDidDisconnect
 {
-    NSLog(@"Disconnected");
     _disconnectCompletionBlock();
 }
 
