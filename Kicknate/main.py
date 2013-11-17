@@ -16,11 +16,11 @@
 #
 import webapp2
 from handlers.handlers import GetDonationDetails,CreateEntitites,GetDonationDonators,GetActiveDonations,GetFinishedDonations
-from handlers.web import GetDonationsList
+from handlers.web import GetDonationsList, GetDonatorsList, CreateDonation
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.out.write('Hello world!')
 
-app = webapp2.WSGIApplication([('/', MainHandler), ('/getDonationDetails',GetDonationDetails),('/createEntities',CreateEntitites),('/getDonationDonators',GetDonationDonators),('/getActiveDonations',GetActiveDonations),('/getFinishedDonations',GetFinishedDonations),('/donations',GetDonationsList)],
+app = webapp2.WSGIApplication([('/', MainHandler), ('/getDonationDetails',GetDonationDetails),('/createEntities',CreateEntitites),('/getDonationDonators',GetDonationDonators),('/getActiveDonations',GetActiveDonations),('/getFinishedDonations',GetFinishedDonations),('/donations',GetDonationsList),('/donators',GetDonatorsList),('/createDonation',CreateDonation)],
                               debug=True)
