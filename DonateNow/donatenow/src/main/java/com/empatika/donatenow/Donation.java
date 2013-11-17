@@ -10,6 +10,15 @@ import java.util.ArrayList;
  */
 public class Donation {
     private String donationId;
+    private String confirmation;
+
+    public String getConfirmation() {
+        return confirmation;
+    }
+
+    public void setConfirmation(String confirmation) {
+        this.confirmation = confirmation;
+    }
 
     public int getAmountRaised() {
         return amountRaised;

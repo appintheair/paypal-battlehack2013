@@ -3,6 +3,7 @@ package com.empatika.donatenow;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -62,6 +64,8 @@ public class MainActivity extends FragmentActivity {
     ImageButton button20;
     ImageButton buttonCustom;
     Button buttonInvite;
+
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +107,7 @@ public class MainActivity extends FragmentActivity {
         buttonInvite.setVisibility(View.INVISIBLE);
     }
 
-    private void setupLayout(Donation donation) {
+    private void setupLayout(final Donation donation) {
         this.donation = donation;
 
         pager = (ViewPager)findViewById(R.id.pager);
@@ -166,6 +170,18 @@ public class MainActivity extends FragmentActivity {
         });
 
         buttonInvite = (Button)findViewById(R.id.buttonInvite);
+        buttonInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Donate. Now.");
+                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Donate on\n" + donation.getTitle());
+
+                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            }
+        });
     }
 
     private void payWithAmount(int amount) {
@@ -173,8 +189,8 @@ public class MainActivity extends FragmentActivity {
         Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra(PaymentActivity.EXTRA_PAYPAL_ENVIRONMENT, PaymentActivity.ENVIRONMENT_SANDBOX);
         intent.putExtra(PaymentActivity.EXTRA_CLIENT_ID, Globals.PAYPAL_CLIENT);
-        intent.putExtra(PaymentActivity.EXTRA_PAYER_ID, "kinda_unique_id");
-        intent.putExtra(PaymentActivity.EXTRA_RECEIVER_EMAIL, "q.pronin-facilitator@gmail.com");
+        intent.putExtra(PaymentActivity.EXTRA_PAYER_ID, "kinda_unique_id2");
+        intent.putExtra(PaymentActivity.EXTRA_RECEIVER_EMAIL, "bayram.annakov-facilitator@gmail.com");
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
         donationAmount = amount;
         startActivityForResult(intent, 0);
@@ -185,21 +201,13 @@ public class MainActivity extends FragmentActivity {
         if (resultCode == Activity.RESULT_OK) {
             PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
             if (confirm != null) {
-                try {
-                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
+                tvPeople.setText(String.format("%d", donation.getVoters()+1));
+                tvRaised.setText(String.format("$%d", donation.getAmountRaised()+donationAmount));
 
-                    tvPeople.setText(String.format("%d", donation.getVoters()+1));
-                    tvRaised.setText(String.format("$%d", donation.getAmountRaised()+donationAmount));
+                donation.setConfirmation(confirm.toJSONObject().toString());
 
-                    // TODO: send 'confirm' to your server for verification.
-                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-                    // for more details.
-
-                    new PaymentDetailsSender().execute(donation);
-
-                } catch (JSONException e) {
-                    Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
-                }
+                dialog = ProgressDialog.show(this, "Verifying your transaction", "It may take a while...");
+                new PaymentDetailsSender().execute(donation);
             }
         }
         else if (resultCode == Activity.RESULT_CANCELED) {
@@ -285,6 +293,7 @@ public class MainActivity extends FragmentActivity {
                 pairs.add(new BasicNameValuePair("amount", String.format("%d", donationAmount)));
                 pairs.add(new BasicNameValuePair("donation_id", donations[0].getDonationId()));
                 pairs.add(new BasicNameValuePair("donator_email", "q.pronin@gmail.com"));
+                pairs.add(new BasicNameValuePair("receipt", donations[0].getConfirmation()));
                 hpost.setEntity(new UrlEncodedFormEntity(pairs));
                 DefaultHttpClient client = new DefaultHttpClient();
                 HttpResponse response;
@@ -292,7 +301,8 @@ public class MainActivity extends FragmentActivity {
                 response = client.execute(hpost);
                 String strResponse = EntityUtils.toString(response.getEntity());
                 JSONObject obj = new JSONObject(strResponse);
-                return true;
+                String error = obj.optString("error");
+                return error == null || error.length() == 0;
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
@@ -301,10 +311,17 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            button10.setVisibility(View.INVISIBLE);
-            button20.setVisibility(View.INVISIBLE);
-            buttonCustom.setVisibility(View.INVISIBLE);
-            buttonInvite.setVisibility(View.VISIBLE);
+            dialog.dismiss();
+            if (result) {
+                Toast.makeText(MainActivity.this, "Successfully donated!", Toast.LENGTH_LONG).show();
+                button10.setVisibility(View.INVISIBLE);
+                button20.setVisibility(View.INVISIBLE);
+                buttonCustom.setVisibility(View.INVISIBLE);
+                buttonInvite.setVisibility(View.VISIBLE);
+            } else {
+                Toast.makeText(MainActivity.this, "Something went wrong :(", Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 
