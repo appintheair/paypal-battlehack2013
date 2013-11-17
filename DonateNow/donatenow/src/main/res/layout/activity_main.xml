@@ -111,6 +111,20 @@
             android:layout_marginLeft="20dp"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invite friends to join"
+            android:background="@android:color/transparent"
+            android:textColor="#3282a1"
+            android:textSize="12pt"
+            android:id="@+id/buttonInvite"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tvPeople"
+            android:visibility="invisible"
+            android:layout_marginTop="50dp"
+            />
+
 
 
     </RelativeLayout>

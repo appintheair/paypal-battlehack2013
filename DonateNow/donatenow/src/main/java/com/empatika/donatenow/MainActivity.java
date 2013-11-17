@@ -58,6 +58,11 @@ public class MainActivity extends FragmentActivity {
     TextView tvPeople;
     TextView tvRaised;
 
+    ImageButton button10;
+    ImageButton button20;
+    ImageButton buttonCustom;
+    Button buttonInvite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +96,13 @@ public class MainActivity extends FragmentActivity {
         new DonationDetailsLoader().execute(donationId);
     }
 
+    private void resetLayout() {
+        button10.setVisibility(View.VISIBLE);
+        button20.setVisibility(View.VISIBLE);
+        buttonCustom.setVisibility(View.VISIBLE);
+        buttonInvite.setVisibility(View.INVISIBLE);
+    }
+
     private void setupLayout(Donation donation) {
         this.donation = donation;
 
@@ -112,21 +124,24 @@ public class MainActivity extends FragmentActivity {
         tvRaised.setText(String.format("$%d", donation.getAmountRaised()));
         tvRaised.setTypeface(tf);
 
-        ((ImageButton)findViewById(R.id.buttonAmount10)).setOnClickListener(new View.OnClickListener() {
+        button10 = (ImageButton)findViewById(R.id.buttonAmount10);
+        button10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 payWithAmount(10);
             }
         });
 
-        ((ImageButton)findViewById(R.id.buttonAmount20)).setOnClickListener(new View.OnClickListener() {
+        button20 = (ImageButton)findViewById(R.id.buttonAmount20);
+        button20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 payWithAmount(20);
             }
         });
 
-        ((ImageButton)findViewById(R.id.buttonCustom)).setOnClickListener(new View.OnClickListener() {
+        buttonCustom = (ImageButton)findViewById(R.id.buttonCustom);
+        buttonCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
@@ -149,6 +164,8 @@ public class MainActivity extends FragmentActivity {
                 alert.show();
             }
         });
+
+        buttonInvite = (Button)findViewById(R.id.buttonInvite);
     }
 
     private void payWithAmount(int amount) {
@@ -253,6 +270,7 @@ public class MainActivity extends FragmentActivity {
         @Override
         protected void onPostExecute(Donation result) {
             setupLayout(result);
+            resetLayout();
         }
     }
 
@@ -283,7 +301,10 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         protected void onPostExecute(Boolean result) {
-
+            button10.setVisibility(View.INVISIBLE);
+            button20.setVisibility(View.INVISIBLE);
+            buttonCustom.setVisibility(View.INVISIBLE);
+            buttonInvite.setVisibility(View.VISIBLE);
         }
     }
 
