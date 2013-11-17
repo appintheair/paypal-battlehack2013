@@ -37,6 +37,14 @@
 		FAAB582F1838740B0025655A /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58231838740B0025655A /* point.png */; };
 		FAAB58301838740B0025655A /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58241838740B0025655A /* done.png */; };
 		FAAB58311838740B0025655A /* point1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58251838740B0025655A /* point1.png */; };
+		FAAB583A1838B02B0025655A /* PTC55F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58321838B02B0025655A /* PTC55F.ttf */; };
+		FAAB583B1838B02B0025655A /* PTN57F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58331838B02B0025655A /* PTN57F.ttf */; };
+		FAAB583C1838B02B0025655A /* PTN77F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58341838B02B0025655A /* PTN77F.ttf */; };
+		FAAB583D1838B02B0025655A /* PTS75F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58351838B02B0025655A /* PTS75F.ttf */; };
+		FAAB583E1838B02B0025655A /* PTS56F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58361838B02B0025655A /* PTS56F.ttf */; };
+		FAAB583F1838B02B0025655A /* PTC75F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58371838B02B0025655A /* PTC75F.ttf */; };
+		FAAB58401838B02B0025655A /* PTS55F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58381838B02B0025655A /* PTS55F.ttf */; };
+		FAAB58411838B02B0025655A /* PTS76F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAAB58391838B02B0025655A /* PTS76F.ttf */; };
 		FABA5B92183835AA00EB9A76 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B8E183835AA00EB9A76 /* libPayPalMobile.a */; };
 		FABA5B94183835E400EB9A76 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B93183835E400EB9A76 /* AVFoundation.framework */; };
 		FABA5B96183835EA00EB9A76 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABA5B95183835EA00EB9A76 /* AudioToolbox.framework */; };
@@ -102,6 +110,14 @@
 		FAAB58231838740B0025655A /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
 		FAAB58241838740B0025655A /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
 		FAAB58251838740B0025655A /* point1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point1.png; sourceTree = "<group>"; };
+		FAAB58321838B02B0025655A /* PTC55F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTC55F.ttf; sourceTree = "<group>"; };
+		FAAB58331838B02B0025655A /* PTN57F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTN57F.ttf; sourceTree = "<group>"; };
+		FAAB58341838B02B0025655A /* PTN77F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTN77F.ttf; sourceTree = "<group>"; };
+		FAAB58351838B02B0025655A /* PTS75F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTS75F.ttf; sourceTree = "<group>"; };
+		FAAB58361838B02B0025655A /* PTS56F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTS56F.ttf; sourceTree = "<group>"; };
+		FAAB58371838B02B0025655A /* PTC75F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTC75F.ttf; sourceTree = "<group>"; };
+		FAAB58381838B02B0025655A /* PTS55F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTS55F.ttf; sourceTree = "<group>"; };
+		FAAB58391838B02B0025655A /* PTS76F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTS76F.ttf; sourceTree = "<group>"; };
 		FABA5B8E183835AA00EB9A76 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
 		FABA5B8F183835AA00EB9A76 /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
 		FABA5B90183835AA00EB9A76 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
@@ -218,6 +234,14 @@
 		FA58D1A618381980005C8239 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FAAB58321838B02B0025655A /* PTC55F.ttf */,
+				FAAB58331838B02B0025655A /* PTN57F.ttf */,
+				FAAB58341838B02B0025655A /* PTN77F.ttf */,
+				FAAB58351838B02B0025655A /* PTS75F.ttf */,
+				FAAB58361838B02B0025655A /* PTS56F.ttf */,
+				FAAB58371838B02B0025655A /* PTC75F.ttf */,
+				FAAB58381838B02B0025655A /* PTS55F.ttf */,
+				FAAB58391838B02B0025655A /* PTS76F.ttf */,
 				FA58D1A718381980005C8239 /* BattlehackHackIOSClient-Info.plist */,
 				FA58D1A818381980005C8239 /* InfoPlist.strings */,
 				FA58D1AB18381980005C8239 /* main.m */,
@@ -382,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAB582D1838740B0025655A /* pic2.jpg in Resources */,
+				FAAB583B1838B02B0025655A /* PTN57F.ttf in Resources */,
 				FAAB58271838740B0025655A /* 20.png in Resources */,
 				FAAB582F1838740B0025655A /* point.png in Resources */,
 				FAAB58301838740B0025655A /* done.png in Resources */,
@@ -390,11 +415,18 @@
 				FAAB582A1838740B0025655A /* people.png in Resources */,
 				FA58D1AA18381980005C8239 /* InfoPlist.strings in Resources */,
 				FAAB58291838740B0025655A /* gradient.png in Resources */,
+				FAAB583C1838B02B0025655A /* PTN77F.ttf in Resources */,
 				FAAB582C1838740B0025655A /* pic1.jpg in Resources */,
+				FAAB583F1838B02B0025655A /* PTC75F.ttf in Resources */,
+				FAAB58401838B02B0025655A /* PTS55F.ttf in Resources */,
 				FAAB58261838740B0025655A /* 10.png in Resources */,
 				FAAB58311838740B0025655A /* point1.png in Resources */,
 				FA58D1B318381980005C8239 /* Main.storyboard in Resources */,
+				FAAB583D1838B02B0025655A /* PTS75F.ttf in Resources */,
+				FAAB583A1838B02B0025655A /* PTC55F.ttf in Resources */,
+				FAAB58411838B02B0025655A /* PTS76F.ttf in Resources */,
 				FAAB582E1838740B0025655A /* pic3.jpg in Resources */,
+				FAAB583E1838B02B0025655A /* PTS56F.ttf in Resources */,
 				FAAB58281838740B0025655A /* edit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

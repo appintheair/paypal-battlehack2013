@@ -79,13 +79,32 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aj-wG-MzO">
+                                <rect key="frame" x="123" y="437" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="done.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yZ-lF-6SU">
+                                <rect key="frame" x="81" y="459" width="158" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="invite friend to join">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="_currentAmount" destination="8Ob-Nc-g59" id="rk1-IU-uTO"/>
+                        <outlet property="_customDonationButton" destination="svG-Cc-cS2" id="Soe-bo-TfS"/>
+                        <outlet property="_doneButton" destination="8aj-wG-MzO" id="smO-rx-TLM"/>
                         <outlet property="_dummyView" destination="RA8-hS-75R" id="MaN-cN-j1w"/>
                         <outlet property="_numberOfDonators" destination="Kqo-JD-Hvw" id="WUN-hQ-jzO"/>
+                        <outlet property="_tenDollarsDonationButton" destination="ifL-R2-Umg" id="4ti-5e-0Fd"/>
+                        <outlet property="_twentyDollarsDonationButton" destination="6Ne-9d-d04" id="vfr-vZ-BzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -95,6 +114,7 @@
     <resources>
         <image name="10.png" width="175" height="176"/>
         <image name="20.png" width="175" height="176"/>
+        <image name="done.png" width="175" height="176"/>
         <image name="edit.png" width="175" height="176"/>
         <image name="people.png" width="52" height="53"/>
     </resources>
