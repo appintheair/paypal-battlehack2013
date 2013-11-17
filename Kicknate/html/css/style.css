@@ -10,8 +10,20 @@ a {
     color: #FFF;
 }
 
+.width-300 {
+    width : 300px;
+}
+
+.block-input {
+    height: 30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 12pt;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
 .menu {
-    height: 34px;
+    height: 50px;
     background-color: #4b4949;
     text-align: center;
     color: #FFF;
@@ -20,7 +32,6 @@ a {
     padding-top: 10px;
     position: fixed;
     top: 0;
-
 }
 
 .menu__tag{
@@ -94,6 +105,11 @@ a {
     font-family: 'PT Sans', sans-serif;
 }
 
+.center-content {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
 
 .more {
     width: 612px;
@@ -124,6 +140,7 @@ a {
 
     display: inline-block;
     text-decoration: none;
+    font-size: 16pt;
 }
 
 .row-info:hover {

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be4c374e-299f-4540-8837-ad10536a685a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/fonts/Knockout-HTF28-JuniorFeatherwt.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/fonts/Rhomus.otf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Kicknate.iml" afterPath="$PROJECT_DIR$/.idea/Kicknate.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/donations.html" afterPath="$PROJECT_DIR$/templates/donations.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/handlers/web/donations.py" afterPath="$PROJECT_DIR$/handlers/web/donations.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/donators.html" afterPath="$PROJECT_DIR$/templates/donators.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/new_donation.html" afterPath="$PROJECT_DIR$/templates/new_donation.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/style.css" afterPath="$PROJECT_DIR$/html/css/style.css" />
@@ -36,21 +34,22 @@
       <file leaf-file-name="donations.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/donations.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="43" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="510">
+            <state line="9" column="0" selection-start="151" selection-end="643" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="450">
               <folding>
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#b#0;n#p#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="donators.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="donators.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/donators.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="20" selection-start="404" selection-end="404" vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="540">
+            <state line="13" column="33" selection-start="331" selection-end="331" vertical-scroll-proportion="0.29907975" vertical-offset="0" max-vertical-offset="652">
               <folding>
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,16 +58,28 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="87" selection-start="297" selection-end="297" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="420">
+            <state line="12" column="14" selection-start="478" selection-end="478" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="480">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_donation.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="new_donation.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/new_donation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="14" selection-start="792" selection-end="792" vertical-scroll-proportion="0.34509203" vertical-offset="0" max-vertical-offset="652">
+            <state line="11" column="0" selection-start="647" selection-end="647" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="315">
+              <folding>
+                <element signature="e#97#122#0" expanded="true" />
+                <element signature="e#150#187#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="donations.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/handlers/web/donations.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="27" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
               <folding />
             </state>
           </provider>
@@ -77,7 +88,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="39" selection-start="1313" selection-end="1313" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2835">
+            <state line="33" column="11" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="3090">
               <folding />
             </state>
           </provider>
@@ -112,11 +123,11 @@
         <option value="$PROJECT_DIR$/handlers/web/base.py" />
         <option value="$PROJECT_DIR$/handlers/web/__init__.py" />
         <option value="$PROJECT_DIR$/handlers/web/donations.py" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/donations.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/html/css/style.css" />
-        <option value="$PROJECT_DIR$/templates/donators.html" />
         <option value="$PROJECT_DIR$/templates/new_donation.html" />
+        <option value="$PROJECT_DIR$/templates/donators.html" />
       </list>
     </option>
   </component>
@@ -194,24 +205,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kicknate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Kicknate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -512,7 +505,11 @@
       <created>1384672813914</created>
       <updated>1384672813914</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Templates are nicely inherited now">
+      <created>1384673674268</created>
+      <updated>1384673674268</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -569,7 +566,8 @@
     </option>
     <MESSAGE value="Refactoring :)" />
     <MESSAGE value="More refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="More refactoring" />
+    <MESSAGE value="Templates are nicely inherited now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Templates are nicely inherited now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -642,38 +640,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/web/donations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="19" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="735">
-          <folding>
-            <marker date="1384672778000" expanded="true" signature="-1:-1" placeholder="import ..." />
-            <marker date="1384672778000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384672778000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1384672778000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handlers/handlers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="18" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="87" selection-start="297" selection-end="297" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="420">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="39" selection-start="1313" selection-end="1313" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2835">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,29 +656,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/handlers/web/donations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="27" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="11" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="3090">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="14" selection-start="478" selection-end="478" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/new_donation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="647" selection-end="647" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="315">
+          <folding>
+            <element signature="e#97#122#0" expanded="true" />
+            <element signature="e#150#187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/donations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="43" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="510">
+        <state line="9" column="0" selection-start="151" selection-end="643" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="450">
           <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#b#0;n#p#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/donators.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="20" selection-start="404" selection-end="404" vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="540">
+        <state line="13" column="33" selection-start="331" selection-end="331" vertical-scroll-proportion="0.29907975" vertical-offset="0" max-vertical-offset="652">
           <folding>
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/new_donation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="14" selection-start="792" selection-end="792" vertical-scroll-proportion="0.34509203" vertical-offset="0" max-vertical-offset="652">
-          <folding />
         </state>
       </provider>
     </entry>

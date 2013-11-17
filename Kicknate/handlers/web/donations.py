@@ -25,7 +25,6 @@ class CreateDonation(base.BaseHandler):
 
     def post(self):
         donation_title = self.request.get('title')
-        donation_amount = self.request.get('amount')
         donation_photo1 = self.request.get('photo1')
         donation_photo2 = self.request.get('photo2')
         donation_photo3 = self.request.get('photo3')
@@ -33,7 +32,7 @@ class CreateDonation(base.BaseHandler):
 
         donation = Donation()
         donation.title = donation_title
-        donation.amount = int(donation_amount)
+        donation.amount = 0
         donation.photo1_url = donation_photo1
         donation.photo2_url = donation_photo2
         donation.photo3_url = donation_photo3
@@ -41,4 +40,4 @@ class CreateDonation(base.BaseHandler):
         donation.put()
 
         time.sleep(0.5)
-        self.redirect(str(self.request.uri))
+        self.redirect('/donations')

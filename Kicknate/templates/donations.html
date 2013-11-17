@@ -6,23 +6,19 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
-<div class="menu">
-    <a href="/donations" class="menu__tag">Donations</a>
-    <a href="/donators" class="menu__tag">Contributors</a>
-</div>
 
-<div style="margin-top: 100px" class="center-content">Donations</div>
-{% for donation in donations %}
-    <div class="row-info">
-        {{ donation.title }}<br/>
-        <div style="font-size: 8pt;">
-            {{ donation.amountRaised }}<br/>
-            Contributed: <b>{{ donation.numberOfVoters }}</b>
+<div style="margin-top: 70px;" class="center-content">
+    {% for donation in donations %}
+        <div class="row-info">
+            <b>{{ donation.title }}</b><br/>
+            <div style="font-size: 12pt;">
+                ${{ donation.amountRaised }}<br/>
+                Contributed: <b>{{ donation.numberOfVoters }}</b> people
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
 
-<br/>
-<a href="/createDonation">Create Donation</a>
+<p><b><a style="font-size: 14pt; color: #51652a;" href="/createDonation">Create Donation</a></b></p>
+</div>
 
 {% endblock %}

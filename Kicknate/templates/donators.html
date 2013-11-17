@@ -6,25 +6,16 @@ Contributors
 {{ super() }}
 {% endblock %}
 {% block content %}
-<div class="menu">
-    <a href="/donations" class="menu__tag">Donations</a>
-    <a href="/donators" class="menu__tag">Contributors</a>
+
+<div style="margin-top: 70px;" class="center-content">
+{% for donator in donators %}
+    <div class="row-info">
+        <b>{{ donator.email }}</b><br/>
+        <div style="font-size: 16pt;">
+            ${{ donator.amountDonated  }}
+        </div>
+    </div>
+{% endfor %}
+
 </div>
-
-<table border="1" style="margin-top:100px">
-    <thead>
-    <td>Name</td>
-    <td>Donation</td>
-    <td>Donated</td>
-
-    </thead>
-    {% for donator in donators %}
-        <tr>
-            <td>{{ donator.email }}</td>
-            <td>{{ donator.donation.title }}</td>
-            <td>{{ donator.amountDonated }}</td>
-        </tr>
-    {% endfor %}
-
-</table>
 {% endblock %}
