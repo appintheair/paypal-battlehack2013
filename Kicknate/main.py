@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 import webapp2
-from handlers import api
+from handlers import api, web
 from handlers.handlers import CreateEntitites
-from handlers.web import GetDonationsList, GetDonatorsList, CreateDonation
+from webapp2_extras import jinja2
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -30,7 +30,9 @@ app = webapp2.WSGIApplication([('/', MainHandler),
                                ('/getDonationDonators', api.GetDonationDonators),
                                ('/getActiveDonations', api.GetActiveDonations),
                                ('/getFinishedDonations', api.GetFinishedDonations),
-                               ('/donations', GetDonationsList),
-                               ('/donators', GetDonatorsList),
-                               ('/createDonation', CreateDonation)],
+                               ('/donations', web.GetDonationsList),
+                               ('/donators', web.GetDonatorsList),
+                               ('/createDonation', web.CreateDonation)],
                               debug=True)
+
+jinja2.set_jinja2(jinja2.Jinja2(app, config={}), app=app)
