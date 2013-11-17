@@ -40,19 +40,4 @@ void displayNumber(int number) {
   int x = (val & 0xF0) >> 4;
   int y = (val & 0x0F) - 8;
   Rb.drawChar(number >> 8, x, y, 0x00FF00);
-  
-//  if (currentNumber >= 0) {
-//    animateNumber(currentNumber, true);
-//  }
-//  currentNumber = number;
-//  animateNumber(number, false);
-//  delay(500);
-}
-
-void animateNumber(int number, bool upDown) {
-//  for (int i=upDown?1:-7; upDown?i<8:i<=0; i++) {
-//    Rb.blankDisplay();
-//    Rb.drawChar(number, 0, i, 0x00FF00);
-//    delay(50);
-//  }
 }
