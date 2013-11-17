@@ -26,9 +26,6 @@ void loop() {
    sendValue(ble_read());
   }
   
-  if (Serial.available()) {
-    playTune(); 
-  }
   while(Serial.available()) {
     sendValue(Serial.read());
   }
