@@ -52,6 +52,7 @@ class GetDonationDetails(webapp2.RequestHandler):
 
         donation = Donation.query(Donation.donation_id == donation_id).get()
         if not donation:
+            self.response.headers['Content-type'] = 'application/json'
             self.response.out.write(json.dumps({
                 'error': 'No such donation :('
             }))
