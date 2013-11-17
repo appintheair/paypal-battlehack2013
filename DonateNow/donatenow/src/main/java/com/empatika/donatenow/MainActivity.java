@@ -190,9 +190,6 @@ public class MainActivity extends FragmentActivity {
         BluetoothGattCharacteristic characteristicRx = gattService.getCharacteristic(RBLService.UUID_BLE_SHIELD_RX);
         bluetoothService.setCharacteristicNotification(characteristicRx, true);
         bluetoothService.readCharacteristic(characteristicRx);
-
-        characteristic.setValue("123".getBytes());
-        bluetoothService.writeCharacteristic(characteristic);
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
@@ -227,6 +224,8 @@ public class MainActivity extends FragmentActivity {
                             bindService(gattServiceIntent, serviceConnection, BIND_AUTO_CREATE);
 
                             registerReceiver(updateReceiver, makeGattUpdateIntentFilter());
+
+                            loadDonationDetails(bluetoothDevice.getAddress());
                         }
                     }
                 }
@@ -243,11 +242,18 @@ public class MainActivity extends FragmentActivity {
 
                 try {
                     Thread.sleep(SCAN_PERIOD);
+
+
+                    bluetoothAdapter.stopLeScan(scanCallback);
+
+                    if (bluetoothDevice == null) {
+                        Thread.sleep(1000);
+                        scanLeDevice();
+                    }
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                bluetoothAdapter.stopLeScan(scanCallback);
             }
         }.start();
     }
@@ -444,7 +450,7 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         protected Donation doInBackground(String... strings) {
-            HttpGet hget = new HttpGet(Globals.HOST_URL + "getDonationDetails?donation_id=" + strings[0]);
+            HttpGet hget = new HttpGet(Globals.HOST_URL + "getDonationDetails?physical_address=" + strings[0]);
 
             DefaultHttpClient client = new DefaultHttpClient();
             HttpResponse response;
@@ -477,7 +483,7 @@ public class MainActivity extends FragmentActivity {
             try {
                 ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
                 pairs.add(new BasicNameValuePair("amount", String.format("%d", donationAmount)));
-                pairs.add(new BasicNameValuePair("donation_id", donations[0].getDonationId()));
+                pairs.add(new BasicNameValuePair("physical_address", donations[0].getDonationId()));
                 pairs.add(new BasicNameValuePair("donator_email", "q.pronin@gmail.com"));
                 pairs.add(new BasicNameValuePair("receipt", donations[0].getConfirmation()));
                 hpost.setEntity(new UrlEncodedFormEntity(pairs));
@@ -499,6 +505,7 @@ public class MainActivity extends FragmentActivity {
         protected void onPostExecute(Boolean result) {
             dialog.dismiss();
             if (result) {
+                uploadBLEValue(donation.getAmountRaised() + donationAmount);
                 Toast.makeText(MainActivity.this, "Successfully donated!", Toast.LENGTH_LONG).show();
                 button10.setVisibility(View.INVISIBLE);
                 button20.setVisibility(View.INVISIBLE);
@@ -509,6 +516,12 @@ public class MainActivity extends FragmentActivity {
             }
 
         }
+    }
+
+    private void uploadBLEValue(int value) {
+        BluetoothGattCharacteristic characteristic = map.get(RBLService.UUID_BLE_SHIELD_TX);
+        characteristic.setValue(String.format("%d", value).getBytes());
+        bluetoothService.writeCharacteristic(characteristic);
     }
 
 }
