@@ -1,0 +1,5 @@
+indexes:
+- kind: Donation
+  properties:
+  - name: id
+  - name: physical_address

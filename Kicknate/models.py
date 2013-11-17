@@ -20,6 +20,7 @@ class Donation(ndb.Model):
     photo3_url = ndb.StringProperty()
     finished = ndb.BooleanProperty(default=False)
     is_kickstarter_type = ndb.BooleanProperty(default=False)
+    physical_address = ndb.StringProperty(required=False)
 
     def to_dict(self):
         response = super(Donation, self).to_dict()

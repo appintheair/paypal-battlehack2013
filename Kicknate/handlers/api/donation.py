@@ -14,7 +14,8 @@ def _validate_receipt(receipt):
     api_password = 'PCRDAWCS9NP4TA2T'
     signature = 'AQU0e5vuZCvSg-XJploSa.sGUDlpAAteHWbtoNsap6FPnIvfRCTc7TbY'
 
-    #logging.info(str(receipt))
+    logging.info(str(receipt))
+    logging.info(str(receipt['proof_of_payment']['adaptive_payment']['app_id']))
 
     result = urlfetch.fetch('https://svcs.sandbox.paypal.com/AdaptivePayments/PaymentDetails',
                             method=urlfetch.POST,
@@ -31,7 +32,7 @@ def _validate_receipt(receipt):
                                 'X-PAYPAL-RESPONSE-DATA-FORMAT': 'NV',
                                 'X-PAYPAL-APPLICATION-ID': receipt['proof_of_payment']['adaptive_payment']['app_id']
                             })
-
+    logging.info("Result content: "+str(result.content))
     obj = urlparse.parse_qs(result.content)
     success = True
     success &= 'status' in obj and obj['status'][0] == 'COMPLETED'
@@ -43,20 +44,24 @@ class GetDonationDetails(webapp2.RequestHandler):
         self.response.headers['Content-type'] = 'application/json'
 
         donation_id = self.request.get('donation_id')
+        physical_address = self.request.get('physical_address')
 
-        if not donation_id:
+        if not donation_id and not physical_address:
             self.response.out.write(json.dumps({
-                'error': 'Please supply donation id'
+                'error': 'Please supply either donation id or physical address'
             }))
             self.abort(400)
 
         donation = Donation.query(Donation.donation_id == donation_id).get()
         if not donation:
-            self.response.headers['Content-type'] = 'application/json'
-            self.response.out.write(json.dumps({
-                'error': 'No such donation :('
-            }))
-            self.abort(404)
+
+            donation = Donation.query(Donation.physical_address == physical_address).get()
+
+            if not donation:
+                self.response.out.write(json.dumps({
+                    'error': 'No such donation :('
+                }))
+                self.abort(404)
 
         self.response.out.write(json.dumps(donation.to_dict()))
 
@@ -70,6 +75,7 @@ class GetDonationDetails(webapp2.RequestHandler):
         amount = int(self.request.get('amount'))
         email = self.request.get('donator_email')
         receipt = self.request.get('receipt')
+        physical_address = self.request.get('physical_address')
 
 
 
@@ -90,7 +96,8 @@ class GetDonationDetails(webapp2.RequestHandler):
             self.response.set_status(400)
             return
 
-
+        if physical_address:
+            donation.physical_address = physical_address
         donation.numberOfVoters += 1
         if donation.amountRaised:
             donation.amountRaised += amount
