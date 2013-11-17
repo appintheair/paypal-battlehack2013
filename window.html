@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Setup</title>
+    <link href="/style.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="/serial.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="menu">
+    Set up New Donation
+</div>
+<div style="margin-top: 90px;"></div>
+<form id="newd_form" method="POST" style="margin: 0 auto; width: 300px;">
+    <p><input type="text" name="title" class="width-300 block-input" placeholder="Donation title" required/></p>
+    <p><input type="text" name="photo1" class="width-300 block-input" placeholder="URL to photo #1" required/></p>
+    <p><input type="text" name="photo2" class="width-300 block-input" placeholder="URL to photo #2" required/></p>
+    <p><input type="text" name="photo3" class="width-300 block-input" placeholder="URL to photo #3" required/></p>
+    <div id="beacon_none">Please connect the beacon...</div>
+    <div id="beacon_present" class="present" style="display: none;">Beacon is ready to be flashed</div>
+
+    <div class="center-content">
+        <button class="nice-button width-150" style="display: none;" id="beacon_button">Create</button>
+        <!--<input type="submit" style="display: none;" id="beacon_button" class="nice-button width-150" value="Create" />-->
+    </div>
+</form>
+<div id="block_success" class="present" style="display: none;">
+    Your beacon has been set up. Place it in some notable place!
+</div>
+</body>
+</html>
