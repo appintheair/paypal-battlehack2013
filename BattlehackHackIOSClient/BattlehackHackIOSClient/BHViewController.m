@@ -238,7 +238,7 @@
 }
 
 
-#warning extract payment method in the near future
+
 - (void)makePayment:(NSString *)amount
 {
     PayPalPayment *payment = [[PayPalPayment alloc] init];
@@ -246,27 +246,32 @@
     payment.currencyCode = @"USD";
     payment.shortDescription = [_titleLabel text];
     
-#warning it woudn't work on live!
+
     [PayPalPaymentViewController setEnvironment:PayPalEnvironmentNoNetwork];
-    NSString *aPayerId = @"someuser@somedomain.com";
+    NSString *aPayerId = @"bayram.annakov-facilitator@gmail.com";
     
-#warning put client_id and paypal email address
-    _paypalController = [[PayPalPaymentViewController alloc] initWithClientId:@"YOUR_CLIENT_ID"
-                                                                receiverEmail:@"test@test.com"
+
+    _paypalController = [[PayPalPaymentViewController alloc] initWithClientId:@"Abgl3xDGFQ9aaqx4rDqGAHnTiFMgGIExYUdFXkTlFjVIA5YWRpP7T_xjAgre"
+                                                                receiverEmail:@"bayram.annakov-facilitator@gmail.com"
                                                                       payerId:aPayerId
                                                                       payment:payment
                                                                      delegate:self];
     [self presentViewController:_paypalController animated:YES completion:nil];
 }
+- (IBAction)doneButtonClicked:(id)sender {
+    [self makePayment:@"10.00"];
+}
 
 - (IBAction)tenDollarsDonationButtonClicked:(id)sender
 {
-    [self makePayment:@"10.00"];
+    //[self makePayment:@"10.00"];
+    [self switchToSecondLayer];
 }
 
 - (IBAction)twentyDollarsDonationButtonClicked:(id)sender
 {
-    [self makePayment:@"20.00"];
+    //[self makePayment:@"20.00"];
+    [self switchToSecondLayer];
 }
 
 - (IBAction)customDonationButtonClicked:(id)sender
@@ -278,7 +283,10 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self makePayment:[alertView textFieldAtIndex:0].text];}
+   // [self makePayment:[alertView textFieldAtIndex:0].text];
+    
+    [self switchToSecondLayer];
+}
 
 #pragma mark – PayPal delegate methods
 
@@ -293,7 +301,10 @@
     _donatorsNumber += 1;
     _donation = [completedPayment.amount integerValue];
     _amount += [completedPayment.amount integerValue];
-    [self switchToSecondLayer];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self switchToThirdLayer];
 }
 
 - (void)payPalPaymentDidCancel
@@ -304,6 +315,8 @@
         _amount += 123;
         [self switchToSecondLayer];
     }];
+    
+    
 }
 
 @end
