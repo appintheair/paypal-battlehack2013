@@ -14,6 +14,30 @@ from email.mime.text import MIMEText
 from google.appengine.api import mail
 
 
+class GetActiveDonations(webapp2.RequestHandler):
+
+    def get(self):
+        self.response.headers['Content-type'] = 'application/json'
+
+        donations = Donation.query(Donation.finished==False).fetch(5000)
+        if donations:
+            response = [donation.to_dict() for donation in donations]
+
+            self.response.headers.add_header('Content-Type', 'application/json; encoding=UTF-8')
+            self.response.out.write(json.dumps({'donations': response}))
+
+class GetFinishedDonations(webapp2.RequestHandler):
+
+    def get(self):
+        self.response.headers['Content-type'] = 'application/json'
+
+        donations = Donation.query(Donation.finished==True).fetch(5000)
+        if donations:
+            response = [donation.to_dict() for donation in donations]
+
+            self.response.headers.add_header('Content-Type', 'application/json; encoding=UTF-8')
+            self.response.out.write(json.dumps({'donations': response}))
+
 class GetDonationDetails(webapp2.RequestHandler):
 
     def get(self):
