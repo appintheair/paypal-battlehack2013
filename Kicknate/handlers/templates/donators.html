@@ -1,0 +1,43 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<html>
+<head>
+    <title>Contributors</title>
+    <link href="/html/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="menu">
+    <a href="/donations" class="menu__tag">Donations</a>
+    <a href="/donators" class="menu__tag">Contributors</a>
+</div>
+
+<table border="1" style="margin-top:100px">
+    <thead>
+    <td>Name</td>
+    <td>Donation</td>
+    <td>Donated</td>
+
+
+    </thead>
+    {% for donator in donators %}
+        <tr>
+            <td>{{ donator.email }}</td>
+            <td>{{ donator.donation.title }}</td>
+            <td>{{ donator.amountDonated }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+<!--
+<div class="rate"><span class="rate_num">5</span> <span class="tag">#GIRL</span></div>
+
+<div class="photo-block">
+    <div class="like"><img src="/html/images/heart.png"/> 666</div>
+    <div class="img-wrap"><img src="/html/images/photo.jpg"/></div>
+    <div class="author">Аррркадий авпвапвап</div>
+</div>
+
+
+<div class="copyright"><img src="/html/images/logo.png"></div> -->
+</body>
+</html>

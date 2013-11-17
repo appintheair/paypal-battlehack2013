@@ -1,0 +1,193 @@
+@font-face {
+    font-family: Rhomus;
+    src: url('/html/fonts/Rhomus.otf');
+}
+
+@font-face2 {
+        font-family:Knockout;
+        src: url('/html/fonts/Knockout-HTF28-JuniorFeatherwt.otf');
+        }
+
+body {
+    margin: 0;
+    background: url('/html/images/bg.jpg');
+    font-family: Rhomus;
+    min-width:612px;
+}
+
+a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.menu {
+    height: 34px;
+    background-color: #4b4949;
+    text-align: center;
+    color: #FFF;
+    font-size: 30px;
+    width: 100%;
+    padding-top: 10px;
+    position: fixed;
+    top: 0;
+
+}
+
+.menu__tag{
+    margin:0 10px;
+}
+
+.rate {
+    width: 612px;
+    height: 80px;
+    margin: 80px auto 15px auto;
+    text-align: center;
+}
+
+.rate_num {
+    font-size: 94px;
+    color: #402E29;
+}
+
+.tag {
+    font-size: 94px;
+    color: #e1652a;
+}
+
+.downloads-block {
+    position: fixed;
+    right: 25px;
+    top: 50px;
+
+}
+
+.downloads-block__google {
+    padding-left: 18px;
+}
+
+.photo-block {
+    margin-bottom: 50px;
+}
+
+.like {
+    width: 612px;
+    margin: auto;
+    font-size: 30px;
+    color: #402E29;
+}
+
+.like img {
+    width: 22px;
+    height: 21px;
+}
+
+.img-wrap {
+    width: 612px;
+    height: 612px;
+    margin: 0 auto;
+    -webkit-box-shadow: 3px 3px 8px 0px #636363;
+    box-shadow: 3px 3px 8px 0px #636363;
+
+}
+
+.img-wrap img {
+    width: 612px;
+    height: 612px;
+}
+
+.author {
+    text-align: right;
+    width: 612px;
+    margin: 10px auto 0 auto;
+    font-size: 30px;
+    color: #959595;
+    font-family: 'Rhomus';
+}
+
+
+.more {
+    width: 612px;
+    margin:-33px auto 15px auto;
+    font-size: 70px;
+    text-align: center;
+}
+.copyright {
+    width: 206px;
+    margin: 5px auto 15px auto;
+}
+
+.copyright img {
+    width: 206px;
+    height: 210px;
+}
+
+.row-info {
+    width: 100%;
+    background-color: #eeeeee;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    color: #444444;
+
+    display: inline-block;
+    text-decoration: none;
+}
+
+.row-info:hover {
+    background-color: #ffffff;
+}
+
+.nice-button {
+
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+    background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+
+    background-color:#ffffff;
+
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+
+    border:1px solid #dcdcdc;
+
+    display:inline-block;
+    color:#666666;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration: none;
+
+    text-shadow:0px 1px 0px #ffffff;
+
+}
+.nice-button:hover {
+
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+    background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+
+    background-color:#f6f6f6;
+}
+.nice-button:active {
+    position:relative;
+    top:1px;
+}
+
+
+
+
+
