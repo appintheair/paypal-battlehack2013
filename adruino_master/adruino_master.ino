@@ -28,7 +28,13 @@ void loop() {
   
   while(Serial.available()) {
     int x = Serial.read();
-    sendValue(x);
+    if (x > 2) {
+      sendValue(x);
+    } else if (x == 1) {
+      Serial.write("E9:B4:F3:9E:23:B2"); 
+    } else if (x == 2) {
+      Serial.write("3731A944-09AA-E79E-2E54-0A27DEB925F8");
+    }
   }
   
   numbers = 0;
