@@ -47,6 +47,8 @@ int digits[] = { -1, -1, -1, -1 };
 void sendNumber(int number) {
   int oldNumber = digits[numbers];
   if (oldNumber >= 0) {
+    if (oldNumber == number)
+      return;
     animate(oldNumber, true);
   }
   animate(number, false);
