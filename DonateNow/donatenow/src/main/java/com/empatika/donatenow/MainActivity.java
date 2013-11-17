@@ -1,13 +1,24 @@
 package com.empatika.donatenow;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
+import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +26,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,14 +50,17 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class MainActivity extends FragmentActivity {
+
+    private static final long SCAN_PERIOD = 3000;
 
     ViewPager pager;
     Donation donation;
@@ -67,11 +77,160 @@ public class MainActivity extends FragmentActivity {
 
     ProgressDialog dialog;
 
+    BluetoothAdapter bluetoothAdapter;
+    BluetoothDevice bluetoothDevice;
+
+    RBLService bluetoothService;
+
+    private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setUpImageLoader();
+        setUpPayPal();
+
+        setUpBLE();
+
+
+//        loadDonationDetails("1");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        unregisterReceiver(updateReceiver);
+    }
+
+    private void setUpBLE() {
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+            Toast.makeText(this, "Ble not supported", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+        bluetoothAdapter = ((BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE)).getAdapter();
+        if (bluetoothAdapter == null) {
+            Toast.makeText(this, "Ble not supported", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+        scanLeDevice();
+    }
+
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName componentName,
+                                       IBinder service) {
+            bluetoothService = ((RBLService.LocalBinder) service).getService();
+            if (!bluetoothService.initialize()) {
+                Toast.makeText(MainActivity.this, "Service initialization error", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            bluetoothService.connect(bluetoothDevice.getAddress());
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            bluetoothService = null;
+        }
+    };
+
+    private final BroadcastReceiver updateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+
+            if (RBLService.ACTION_GATT_DISCONNECTED.equals(action)) {
+            } else if (RBLService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+                getGattService(bluetoothService.getSupportedGattService());
+            } else if (RBLService.ACTION_DATA_AVAILABLE.equals(action)) {
+                displayData(intent.getByteArrayExtra(RBLService.EXTRA_DATA));
+            }
+        }
+    };
+
+    private void getGattService(BluetoothGattService gattService) {
+        if (gattService == null)
+            return;
+
+        BluetoothGattCharacteristic characteristic = gattService.getCharacteristic(RBLService.UUID_BLE_SHIELD_TX);
+        map.put(characteristic.getUuid(), characteristic);
+
+        BluetoothGattCharacteristic characteristicRx = gattService.getCharacteristic(RBLService.UUID_BLE_SHIELD_RX);
+        bluetoothService.setCharacteristicNotification(characteristicRx, true);
+        bluetoothService.readCharacteristic(characteristicRx);
+
+        characteristic.setValue("123".getBytes());
+        bluetoothService.writeCharacteristic(characteristic);
+    }
+
+    private static IntentFilter makeGattUpdateIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+
+        intentFilter.addAction(RBLService.ACTION_GATT_CONNECTED);
+        intentFilter.addAction(RBLService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(RBLService.ACTION_GATT_SERVICES_DISCOVERED);
+        intentFilter.addAction(RBLService.ACTION_DATA_AVAILABLE);
+
+        return intentFilter;
+    }
+
+    private void displayData(byte[] byteArray) {
+        if (byteArray != null) {
+            String data = new String(byteArray);
+            Toast.makeText(this, data, Toast.LENGTH_LONG);
+        }
+    }
+
+    BluetoothAdapter.LeScanCallback scanCallback = new BluetoothAdapter.LeScanCallback() {
+        @Override
+        public void onLeScan(final BluetoothDevice device, final int rssi, byte[] scanRecord) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (device != null) {
+                        if (device.getName() != null && device.getName().contains("Shield")) {
+                            bluetoothDevice = device;
+
+                            Intent gattServiceIntent = new Intent(MainActivity.this, RBLService.class);
+                            bindService(gattServiceIntent, serviceConnection, BIND_AUTO_CREATE);
+
+                            registerReceiver(updateReceiver, makeGattUpdateIntentFilter());
+                        }
+                    }
+                }
+            });
+        }
+    };
+
+    private void scanLeDevice() {
+        new Thread() {
+
+            @Override
+            public void run() {
+                bluetoothAdapter.startLeScan(scanCallback);
+
+                try {
+                    Thread.sleep(SCAN_PERIOD);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                bluetoothAdapter.stopLeScan(scanCallback);
+            }
+        }.start();
+    }
+
+    private void setUpImageLoader() {
         if (!ImageLoader.getInstance().isInited()) {
             DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
@@ -81,19 +240,22 @@ public class MainActivity extends FragmentActivity {
                     .defaultDisplayImageOptions(defaultOptions).build();
             ImageLoader.getInstance().init(config);
         }
+    }
 
+    private void setUpPayPal() {
         Intent intent = new Intent(this, PayPalService.class);
         intent.putExtra(PaymentActivity.EXTRA_PAYPAL_ENVIRONMENT, PaymentActivity.ENVIRONMENT_SANDBOX);
         intent.putExtra(PaymentActivity.EXTRA_CLIENT_ID, Globals.PAYPAL_CLIENT);
         startService(intent);
-
-        loadDonationDetails("1");
     }
 
     @Override
     public void onDestroy() {
-        stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
+        stopService(new Intent(this, PayPalService.class));
+
+        bluetoothService.disconnect();
+        bluetoothService.close();
     }
 
     private void loadDonationDetails(String donationId) {
@@ -270,15 +432,17 @@ public class MainActivity extends FragmentActivity {
                 JSONObject obj = new JSONObject(strResponse);
                 return new Donation(obj);
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
                 return null;
             }
         }
 
         @Override
         protected void onPostExecute(Donation result) {
-            setupLayout(result);
-            resetLayout();
+            if (result != null) {
+                setupLayout(result);
+                resetLayout();
+            }
         }
     }
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.readbear;
+package com.empatika.donatenow;
 
 import java.util.HashMap;
 

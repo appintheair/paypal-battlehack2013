@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.readbear;
+package com.empatika.donatenow;
 
 import java.util.UUID;
 
@@ -143,7 +143,7 @@ public class RBLService extends Service {
 	}
 
 	public class LocalBinder extends Binder {
-		RBLService getService() {
+		public RBLService getService() {
 			return RBLService.this;
 		}
 	}
