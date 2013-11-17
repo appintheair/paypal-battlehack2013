@@ -20,6 +20,7 @@ import android.graphics.Typeface;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -98,9 +99,6 @@ public class MainActivity extends FragmentActivity {
         setUpPayPal();
 
         setUpBLE();
-
-
-//        loadDonationDetails("1");
     }
 
     private void setUpWifi() {
@@ -129,7 +127,10 @@ public class MainActivity extends FragmentActivity {
     protected void onStop() {
         super.onStop();
 
-        unregisterReceiver(updateReceiver);
+//        try {
+//            unregisterReceiver(updateReceiver);
+//        } catch (Exception e) {
+//        }
     }
 
     private void setUpBLE() {
@@ -280,10 +281,12 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(this, PayPalService.class));
-
-        bluetoothService.disconnect();
-        bluetoothService.close();
+//        stopService(new Intent(this, PayPalService.class));
+//
+//        if (bluetoothService != null) {
+//            bluetoothService.disconnect();
+//            bluetoothService.close();
+//        }
     }
 
     private void loadDonationDetails(String donationId) {
@@ -483,7 +486,7 @@ public class MainActivity extends FragmentActivity {
             try {
                 ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
                 pairs.add(new BasicNameValuePair("amount", String.format("%d", donationAmount)));
-                pairs.add(new BasicNameValuePair("physical_address", donations[0].getDonationId()));
+                pairs.add(new BasicNameValuePair("donation_id", donations[0].getDonationId()));
                 pairs.add(new BasicNameValuePair("donator_email", "q.pronin@gmail.com"));
                 pairs.add(new BasicNameValuePair("receipt", donations[0].getConfirmation()));
                 hpost.setEntity(new UrlEncodedFormEntity(pairs));
@@ -504,24 +507,44 @@ public class MainActivity extends FragmentActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             dialog.dismiss();
-            if (result) {
+//            if (result) {
                 uploadBLEValue(donation.getAmountRaised() + donationAmount);
                 Toast.makeText(MainActivity.this, "Successfully donated!", Toast.LENGTH_LONG).show();
                 button10.setVisibility(View.INVISIBLE);
                 button20.setVisibility(View.INVISIBLE);
                 buttonCustom.setVisibility(View.INVISIBLE);
                 buttonInvite.setVisibility(View.VISIBLE);
-            } else {
-                Toast.makeText(MainActivity.this, "Something went wrong :(", Toast.LENGTH_LONG).show();
-            }
+//            } else {
+//                Toast.makeText(MainActivity.this, "Something went wrong :(", Toast.LENGTH_LONG).show();
+//            }
 
         }
     }
 
+    private Handler handler = new Handler();
+
     private void uploadBLEValue(int value) {
         BluetoothGattCharacteristic characteristic = map.get(RBLService.UUID_BLE_SHIELD_TX);
-        characteristic.setValue(String.format("%d", value).getBytes());
+        String k = String.format("%d", value);
+        characteristic.setValue(k.getBytes());
         bluetoothService.writeCharacteristic(characteristic);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stopService(new Intent(MainActivity.this, PayPalService.class));
+                bluetoothService.disconnect();
+                bluetoothService.close();
+
+                unbindService(serviceConnection);
+
+                try {
+                    unregisterReceiver(updateReceiver);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 5000);
     }
 
 }
