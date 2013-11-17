@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be4c374e-299f-4540-8837-ad10536a685a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/donations.html" afterPath="$PROJECT_DIR$/templates/donations.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/handlers/web/donations.py" afterPath="$PROJECT_DIR$/handlers/web/donations.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/donators.html" afterPath="$PROJECT_DIR$/templates/donators.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/new_donation.html" afterPath="$PROJECT_DIR$/templates/new_donation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/style.css" afterPath="$PROJECT_DIR$/html/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kicknate.iws" />
@@ -20,7 +14,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -509,7 +503,11 @@
       <created>1384673674268</created>
       <updated>1384673674268</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Just simple styling">
+      <created>1384675657481</created>
+      <updated>1384675657481</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -567,7 +565,8 @@
     <MESSAGE value="Refactoring :)" />
     <MESSAGE value="More refactoring" />
     <MESSAGE value="Templates are nicely inherited now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Templates are nicely inherited now" />
+    <MESSAGE value="Just simple styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Just simple styling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
