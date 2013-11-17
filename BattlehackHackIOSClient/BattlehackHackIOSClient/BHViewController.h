@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PayPalMobile.h"
 
-@interface BHViewController : UIViewController<PayPalPaymentDelegate>
+@interface BHViewController : UIViewController<PayPalPaymentDelegate, UIScrollViewDelegate>
 
 @end

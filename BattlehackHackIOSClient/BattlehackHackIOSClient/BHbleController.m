@@ -63,7 +63,6 @@ static BHbleController *_instance;
 
 - (void)pushToDevice:(NSString *)str
 {
-    str = [NSString stringWithFormat:@"%@\r\n", str];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [_shield write:data];
 }
