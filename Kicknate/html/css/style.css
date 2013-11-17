@@ -1,17 +1,7 @@
-@font-face {
-    font-family: Rhomus;
-    src: url('/html/fonts/Rhomus.otf');
-}
-
-@font-face2 {
-        font-family:Knockout;
-        src: url('/html/fonts/Knockout-HTF28-JuniorFeatherwt.otf');
-        }
-
 body {
     margin: 0;
     background: url('/html/images/bg.jpg');
-    font-family: Rhomus;
+    font-family: 'PT Sans', sans-serif;
     min-width:612px;
 }
 
@@ -101,7 +91,7 @@ a {
     margin: 10px auto 0 auto;
     font-size: 30px;
     color: #959595;
-    font-family: 'Rhomus';
+    font-family: 'PT Sans', sans-serif;
 }
 
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head_extend %}
+        <link href="/html/css/style.css" rel="stylesheet" media="screen">
+        <script type="text/javascript" src="/html/script/jquery-2.0.0.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}
+</body>
+</html>

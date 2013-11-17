@@ -1,8 +1,8 @@
-<html>
-<head>
-    <title>New donation</title>
-
-</head>
+{% extends 'base.html' %}
+{% block title %}
+New donation
+{% endblock %}
+{% block content %}
 <form method="POST">
     <input type="text" name="title" class="width-100p block-input" placeholder="Donation title" required/><br/>
     <input type="text" name="amount" class="width-100p block-input" placeholder="Amount to raise" required/>
@@ -13,5 +13,4 @@
 
     <div class="center-content"><input type="submit" class="nice-button width-150" value="Create" /></div>
 </form>
-
-</html>
+{% endblock %}
