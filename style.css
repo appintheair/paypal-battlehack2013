@@ -24,6 +24,13 @@ a {
     margin-bottom: 10px;
 }
 
+.ready {
+    color: #f48C84;
+    font-size: 16pt;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .width-300 {
     width : 300px;
 }
