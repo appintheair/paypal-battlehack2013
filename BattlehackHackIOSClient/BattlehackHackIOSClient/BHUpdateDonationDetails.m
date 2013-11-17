@@ -33,10 +33,11 @@ static NSString *_APIURL = @"http://2.beacons-kicknate.appspot.com/";
     return _instance;
 }
 
-- (void)updateDonationDetailsWithID:(NSString *)uuid AndAmount:(NSDecimalNumber *)amount ByUser:(NSString *)email WithCompletionBlock:(void (^)(void))completionBlock
+- (void)updateDonationDetailsWithID:(NSString *)uuid AndAmount:(NSDecimalNumber *)amount ByUser:(NSString *)email WithReceipt:(NSData *)receipt WithCompletionBlock:(void (^)(void))completionBlock
 {
     _completionBlock = completionBlock;
-    NSString *urlString = [NSString stringWithFormat:@"%@getDonationDetails?donation_id=%@&amount=%@&donator_email=%@", _APIURL, uuid, amount, email];
+    NSString *urlString = [NSString stringWithFormat:@"%@getDonationDetails?donation_id=%@&amount=%@&donator_email=%@&receipt=%@", _APIURL, uuid, amount, email, [[[NSString alloc] initWithData:receipt encoding:NSUTF8StringEncoding] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];

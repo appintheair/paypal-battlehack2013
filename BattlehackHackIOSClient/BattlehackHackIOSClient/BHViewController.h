@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PayPalMobile.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface BHViewController : UIViewController<PayPalPaymentDelegate, UIScrollViewDelegate>
+@interface BHViewController : UIViewController<PayPalPaymentDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end

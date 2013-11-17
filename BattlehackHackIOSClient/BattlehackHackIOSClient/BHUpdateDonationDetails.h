@@ -11,6 +11,6 @@
 @interface BHUpdateDonationDetails : NSObject<NSURLConnectionDelegate>
 
 + (BHUpdateDonationDetails *)sharedInstance;
-- (void)updateDonationDetailsWithID:(NSString *)uuid AndAmount:(NSDecimalNumber *)amount ByUser:(NSString *)email WithCompletionBlock:(void (^)(void)) completionBlock;
+- (void)updateDonationDetailsWithID:(NSString *)uuid AndAmount:(NSDecimalNumber *)amount ByUser:(NSString *)email WithReceipt:(NSData *)receipt WithCompletionBlock:(void (^)(void)) completionBlock;
 
 @end

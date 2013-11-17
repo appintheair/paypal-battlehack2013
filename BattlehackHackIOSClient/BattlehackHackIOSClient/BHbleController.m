@@ -48,7 +48,7 @@ static BHbleController *_instance;
 
 - (void)searchForPeripherals
 {
-    [NSTimer scheduledTimerWithTimeInterval:(float)SEARCH_TIMEOUT target:self selector:@selector(search) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:(float)2 * SEARCH_TIMEOUT target:self selector:@selector(search) userInfo:nil repeats:YES];
 }
 
 - (void)setConnectCompletionBlock:(void (^)(NSString *))completionBlock
@@ -65,6 +65,12 @@ static BHbleController *_instance;
 {
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [_shield write:data];
+    
+    if (_shield.activePeripheral.state == CBPeripheralStateConnected)
+    {
+        [[_shield CM] cancelPeripheralConnection:[_shield activePeripheral]];
+        return;
+    }
 }
 
 - (void)search

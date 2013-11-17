@@ -10,6 +10,7 @@
 #import "BHbleController.h"
 #import "BHGetDonationDetails.h"
 #import "BHUpdateDonationDetails.h"
+#import "BHForegroundView.h"
 
 @interface BHViewController ()
 {
@@ -21,6 +22,7 @@
     BHbleController *_controller;
     BHGetDonationDetails *_getDetailsHandler;
     BHUpdateDonationDetails *_updateDetailsHandler;
+    BHForegroundView *_foregroundView;
     __weak NSString *_currentUUID;
     NSString *_payerEmail;
     NSInteger _amount;
@@ -31,8 +33,7 @@
     __weak IBOutlet UIButton *_twentyDollarsDonationButton;
     __weak IBOutlet UIButton *_tenDollarsDonationButton;
     __weak IBOutlet UIButton *_customDonationButton;
-    
-    PayPalPaymentViewController *_paypalController;
+    __weak IBOutlet UIImageView *_menIcon;
     
     // second layer view
     UIView *_filterView2;
@@ -43,10 +44,15 @@
     UILabel *_donationLabel;
     UILabel *_nTitleLabel;
     __weak IBOutlet UIButton *_doneButton;
+    UIButton *_backButton;
     
     // third layer view
-    UILabel *_thankYouLabel;
+    __weak IBOutlet UILabel *_thankYouLabel;
     __weak IBOutlet UIButton *_inviteButton;
+    
+    PayPalPaymentViewController *_paypalViewController;
+    
+    BOOL afterDonationStatus;
 }
 
 @end
@@ -56,6 +62,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    afterDonationStatus = NO;
 	// Do any additional setup after loading the view, typically from a nib.
     [self.view setBackgroundColor:[UIColor colorWithRed:232./255 green:234./255 blue:234./255 alpha:1.]];
     _controller = [BHbleController sharedInstance];
@@ -112,12 +119,25 @@
     [_nTitleLabel setFont:[UIFont fontWithName:@"PT Sans" size:35.f]];
     [_nTitleLabel setTextColor:[UIColor whiteColor]];
     [_doneButton setHidden:YES];
+    _backButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 22, 34)];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
+    [_backButton addTarget:self action:@selector(backToFirstLayer) forControlEvents:UIControlEventTouchUpInside];
     
      // third layer
-    _thankYouLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     [_thankYouLabel setTextAlignment:NSTextAlignmentCenter];
     [_thankYouLabel setText:@"Thank you!"];
-    [_thankYouLabel sizeToFit];
+    [_thankYouLabel setTextColor:[UIColor whiteColor]];
+    [_thankYouLabel setFont:[UIFont fontWithName:@"PT Sans" size:45.f]];
+    [[_inviteButton titleLabel] setFont:[UIFont fontWithName:@"PT Sans" size:25.f]];
+    [_inviteButton setTitle:@"Invite friend to join" forState:UIControlStateNormal];
+    [_inviteButton setHidden:YES];
+    [_inviteButton addTarget:self action:@selector(inviteFriendByEmail) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_inviteButton];
+    _foregroundView = [[BHForegroundView alloc] initWithFrame:self.view.frame];
+    if (!afterDonationStatus)
+    {
+        [self.view addSubview:_foregroundView];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,14 +147,20 @@
         [[NSUserDefaults standardUserDefaults] setObject:uuid forKey:@"current_uuid"];
         [controller getDonationDetailsByUUID:uuid];
     }];
-//    [_controller searchForPeripherals];
-    [self getDonationDetailsByUUID:@""];
+    [_controller searchForPeripherals];
+    [PayPalPaymentViewController setEnvironment:PayPalEnvironmentSandbox];
+    [PayPalPaymentViewController prepareForPaymentUsingClientId:@"AWQdTxBG_q1-ouXyg8BIhBmJ39wz-nx_mU2nS62x4kRNTCFYVO3Z0tZcV8wO"];
 }
 
 - (void)getDonationDetailsByUUID:(NSString *)uuid
 {
-    [_getDetailsHandler getDonationDetailsByID:@"1" WithCompletionBlock:^(NSDictionary *response) {
-        NSLog(@"%@", response);
+    [_getDetailsHandler getDonationDetailsByID:uuid WithCompletionBlock:^(NSDictionary *response) {
+        if (afterDonationStatus)
+        {
+            afterDonationStatus = NO;
+            return;
+        }
+        
         [_numberOfDonators setText:[NSString stringWithFormat:@"%@", [response objectForKey:@"numberOfVoters"]]];
         [_titleLabel setText:[response objectForKey:@"title"]];
         NSNumber *value = [response objectForKey:@"amountRaised"];
@@ -147,7 +173,6 @@
         NSArray *views = @[view1, view2, view3];
         NSArray *urls = @[[response objectForKey:@"photo1_url"], [response objectForKey:@"photo2_url"], [response objectForKey:@"photo3_url"]];
         [self setupScrollViewWithImages:views AndImageURLS:urls];
-        
     }];
 }
 
@@ -176,6 +201,7 @@
         [_scrollView addSubview:imageView];
     }
     _scrollView.contentSize = CGSizeMake(960, 320);
+    [_foregroundView setHidden:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
@@ -202,6 +228,28 @@
                 }];
 }
 
+- (void)switchToFirstLayer
+{
+    [_filterView setAlpha:1.];
+    [_donateLabel1 removeFromSuperview];
+    [_donateLabel2 removeFromSuperview];
+    [_dummyView1 removeFromSuperview];
+    [_dummyView2 removeFromSuperview];
+    [_donationLabel removeFromSuperview];
+    [_nTitleLabel removeFromSuperview];
+    [_filterView2 removeFromSuperview];
+    [_doneButton setHidden:YES];
+    [_tenDollarsDonationButton setHidden:NO];
+    [_customDonationButton setHidden:NO];
+    [_twentyDollarsDonationButton setHidden:NO];
+    [_thankYouLabel setHidden:YES];
+    [_inviteButton setHidden:YES];
+    [_backButton setHidden:YES];
+    [_currentAmount setTextColor:[UIColor colorWithRed:130./255 green:140./255 blue:140./255 alpha:1.]];
+    [_numberOfDonators setTextColor:[UIColor colorWithRed:130./255 green:140./255 blue:140./255 alpha:1.]];
+    [_menIcon setImage:[UIImage imageNamed:@"people.png"]];
+}
+
 - (void)switchToSecondLayer
 {
     [_filterView setAlpha:0.];
@@ -209,22 +257,28 @@
     [_filterView2 addSubview:_donateLabel1];
     [_filterView2 addSubview:_dummyView1];
     [_filterView2 addSubview:_dummyView2];
-    [_donationLabel setText:[NSString stringWithFormat:@"$%d", _donation]];
     [_filterView2 addSubview:_donationLabel];
     [_filterView2 addSubview:_donateLabel2];
     [_nTitleLabel setText:[_titleLabel text]];
     [_filterView2 addSubview:_nTitleLabel];
     [_doneButton setHidden:NO];
-    [_numberOfDonators setText:[NSString stringWithFormat:@"%d", _donatorsNumber]];
     [_donationLabel setText:[NSString stringWithFormat:@"$%d", _donation]];
-    [_currentAmount setText:[NSString stringWithFormat:@"$%d", _amount]];
     [_tenDollarsDonationButton setHidden:YES];
     [_customDonationButton setHidden:YES];
     [_twentyDollarsDonationButton setHidden:YES];
+    [_backButton setHidden:NO];
+    [_filterView2 addSubview:_backButton];
+    [_currentAmount setTextColor:[UIColor colorWithRed:130./255 green:140./255 blue:140./255 alpha:1.]];
+    [_numberOfDonators setTextColor:[UIColor colorWithRed:130./255 green:140./255 blue:140./255 alpha:1.]];
+    [_menIcon setImage:[UIImage imageNamed:@"people.png"]];
 }
 
 - (void)switchToThirdLayer
 {
+    [_numberOfDonators setText:[NSString stringWithFormat:@"%d", _donatorsNumber]];
+    [_currentAmount setText:[NSString stringWithFormat:@"$%d", _amount]];
+    [_currentAmount setTextColor:[UIColor colorWithRed:50./255 green:110./255 blue:160./255 alpha:1.]];
+    [_numberOfDonators setTextColor:[UIColor colorWithRed:50./255 green:110./255 blue:160./255 alpha:1.]];
     [_donateLabel1 removeFromSuperview];
     [_dummyView1 removeFromSuperview];
     [_dummyView2 removeFromSuperview];
@@ -232,45 +286,45 @@
     [_donateLabel2 removeFromSuperview];
     [_nTitleLabel removeFromSuperview];
     [_doneButton setHidden:YES];
+    [_menIcon setImage:[UIImage imageNamed:@"people2.png"]];
     
     [_filterView2 addSubview:_thankYouLabel];
-    
+    [_thankYouLabel setHidden:NO];
+    if ([MFMailComposeViewController canSendMail])
+    {
+        [_inviteButton setHidden:NO];
+    }
 }
 
-
-
-- (void)makePayment:(NSString *)amount
+- (void)makePayment:(NSInteger)amount
 {
     PayPalPayment *payment = [[PayPalPayment alloc] init];
-    payment.amount = [[NSDecimalNumber alloc] initWithString:amount];
+    payment.amount = (NSDecimalNumber *)[NSDecimalNumber numberWithInteger:amount];
     payment.currencyCode = @"USD";
     payment.shortDescription = [_titleLabel text];
-    
-
-    [PayPalPaymentViewController setEnvironment:PayPalEnvironmentNoNetwork];
-    NSString *aPayerId = @"bayram.annakov-facilitator@gmail.com";
-    
-
-    _paypalController = [[PayPalPaymentViewController alloc] initWithClientId:@"Abgl3xDGFQ9aaqx4rDqGAHnTiFMgGIExYUdFXkTlFjVIA5YWRpP7T_xjAgre"
+    NSString *aPayerId = @"q.pronin-facilitator@gmail.com";
+    PayPalPaymentViewController *_paypalController = [[PayPalPaymentViewController alloc] initWithClientId:@"AWQdTxBG_q1-ouXyg8BIhBmJ39wz-nx_mU2nS62x4kRNTCFYVO3Z0tZcV8wO"
                                                                 receiverEmail:@"bayram.annakov-facilitator@gmail.com"
                                                                       payerId:aPayerId
                                                                       payment:payment
                                                                      delegate:self];
     [self presentViewController:_paypalController animated:YES completion:nil];
 }
-- (IBAction)doneButtonClicked:(id)sender {
-    [self makePayment:@"10.00"];
+
+- (IBAction)doneButtonClicked:(id)sender
+{
+    [self makePayment:_donation];
 }
 
 - (IBAction)tenDollarsDonationButtonClicked:(id)sender
 {
-    //[self makePayment:@"10.00"];
+    _donation = 10;
     [self switchToSecondLayer];
 }
 
 - (IBAction)twentyDollarsDonationButtonClicked:(id)sender
 {
-    //[self makePayment:@"20.00"];
+    _donation = 20;
     [self switchToSecondLayer];
 }
 
@@ -281,42 +335,73 @@
     [alert show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-   // [self makePayment:[alertView textFieldAtIndex:0].text];
-    
+    _donation = [[alertView textFieldAtIndex:0].text integerValue];
     [self switchToSecondLayer];
+}
+
+- (void)backToFirstLayer
+{
+    [self switchToFirstLayer];
+}
+
+- (void)inviteFriendByEmail
+{
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:@"My Subject"];
+    [controller setMessageBody:@"Hello there." isHTML:NO];
+    
+    if (controller)
+    {
+        [self presentViewController:controller animated:YES completion:^{
+            
+        }];
+    }
+}
+
+#pragma mark – MFMailCompose delegate methods
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+    
+    [self switchToFirstLayer];
 }
 
 #pragma mark – PayPal delegate methods
 
 - (void)payPalPaymentDidComplete:(PayPalPayment *)completedPayment
 {
-    NSString *currentUUID = [[NSUserDefaults standardUserDefaults] stringForKey:@"current_uuid"];
-    NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey:@"payer_email"];
-    [_updateDetailsHandler updateDonationDetailsWithID:currentUUID AndAmount:completedPayment.amount ByUser:email WithCompletionBlock:^{
-        
+//    NSString *currentUUID = [[NSUserDefaults standardUserDefaults] stringForKey:@"current_uuid"];
+    NSString *currentUUID = @"1";
+    NSString *email = @"q.pronin-facilitator@gmail.com";
+    NSData *receipt = [NSJSONSerialization dataWithJSONObject:completedPayment.confirmation
+                                                      options:0
+                                                        error:nil];
+    [_updateDetailsHandler updateDonationDetailsWithID:currentUUID AndAmount:completedPayment.amount ByUser:email WithReceipt:receipt WithCompletionBlock:^{
+        [_controller pushToDevice:[NSString stringWithFormat:@"%ld", (long)_amount]];
+        _donatorsNumber += 1;
+        _donation = [completedPayment.amount integerValue];
+        _amount += [completedPayment.amount integerValue];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self switchToThirdLayer];
+        afterDonationStatus = YES;
     }];
-    [_controller pushToDevice:[NSString stringWithFormat:@"%ld", (long)_amount]];
-    _donatorsNumber += 1;
-    _donation = [completedPayment.amount integerValue];
-    _amount += [completedPayment.amount integerValue];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    [self switchToThirdLayer];
 }
 
 - (void)payPalPaymentDidCancel
 {
-    [_paypalController dismissViewControllerAnimated:YES completion:^{
-        _donatorsNumber += 1;
-        _donation = 23;
-        _amount += 123;
-        [self switchToSecondLayer];
+    [self dismissViewControllerAnimated:YES completion:^{
     }];
-    
-    
 }
+
 
 @end
