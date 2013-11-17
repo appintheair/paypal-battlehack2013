@@ -79,6 +79,7 @@ class GetDonationDetails(webapp2.RequestHandler):
 
 
 
+
         donation = Donation.query(Donation.donation_id == donation_id).get()
 
         if not donation:
