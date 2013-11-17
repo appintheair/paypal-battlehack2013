@@ -118,7 +118,7 @@ class GetDonationDetails(webapp2.RequestHandler):
 
                 donation.finished = True
                 donation.put()
-                
+
                 for donator in donators:
                     if donator.email: self.sendEmail(donation,donator)
 

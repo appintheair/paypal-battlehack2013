@@ -19,7 +19,7 @@ class Donation(ndb.Model):
     photo2_url = ndb.StringProperty()
     photo3_url = ndb.StringProperty()
     finished = ndb.BooleanProperty(default=False)
-    isKickstarterModel = ndb.BooleanProperty(default=False)
+    is_kickstarter_type = ndb.BooleanProperty(default=False)
 
 
 
