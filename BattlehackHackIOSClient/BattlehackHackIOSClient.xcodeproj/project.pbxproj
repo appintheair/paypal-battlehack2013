@@ -10,6 +10,7 @@
 		F17B12C11838D745007DFAA1 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F17B12C01838D745007DFAA1 /* libPayPalMobile.a */; };
 		FA4CFEB718393B1E0098DD67 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4CFEB618393B1E0098DD67 /* splash.png */; };
 		FA4CFEB9183941750098DD67 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4CFEB8183941750098DD67 /* back.png */; };
+		FA4CFEBB1839672C0098DD67 /* icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA4CFEBA1839672C0098DD67 /* icon.jpg */; };
 		FA58D1A018381980005C8239 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D19F18381980005C8239 /* Foundation.framework */; };
 		FA58D1A218381980005C8239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D1A118381980005C8239 /* CoreGraphics.framework */; };
 		FA58D1A418381980005C8239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D1A318381980005C8239 /* UIKit.framework */; };
@@ -78,6 +79,7 @@
 		F17B12C01838D745007DFAA1 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = "../../../../Downloads/PayPal-iOS-SDK-master/PayPalMobile/libPayPalMobile.a"; sourceTree = "<group>"; };
 		FA4CFEB618393B1E0098DD67 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		FA4CFEB8183941750098DD67 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		FA4CFEBA1839672C0098DD67 /* icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon.jpg; sourceTree = "<group>"; };
 		FA58D19C18381980005C8239 /* BattlehackHackIOSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BattlehackHackIOSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA58D19F18381980005C8239 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA58D1A118381980005C8239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -327,6 +329,7 @@
 		FAC6144A183853910009CEB3 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				FA4CFEBA1839672C0098DD67 /* icon.jpg */,
 				FA4CFEB8183941750098DD67 /* back.png */,
 				FA4CFEB618393B1E0098DD67 /* splash.png */,
 				FAAB585F1838E9CF0025655A /* arrow.png */,
@@ -445,6 +448,7 @@
 				FA4CFEB9183941750098DD67 /* back.png in Resources */,
 				FAAB583D1838B02B0025655A /* PTS75F.ttf in Resources */,
 				FAAB583A1838B02B0025655A /* PTC55F.ttf in Resources */,
+				FA4CFEBB1839672C0098DD67 /* icon.jpg in Resources */,
 				FAAB58411838B02B0025655A /* PTS76F.ttf in Resources */,
 				FAAB582E1838740B0025655A /* pic3.jpg in Resources */,
 				FAAB583E1838B02B0025655A /* PTS56F.ttf in Resources */,

@@ -401,7 +401,7 @@
         _donatorsNumber += 1;
         _donation = [completedPayment.amount integerValue];
         _amount += [completedPayment.amount integerValue];
-        [_controller pushToDevice:[NSString stringWithFormat:@"%ld", (long)_amount]];
+        [_controller pushToDevice:[NSString stringWithFormat:@"%03ld", (long)_amount]];
         [self dismissViewControllerAnimated:YES completion:nil];
         [self switchToThirdLayer];
         afterDonationStatus = NO;
