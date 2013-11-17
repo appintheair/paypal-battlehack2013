@@ -17,5 +17,6 @@
 - (void)setDisconnectCompletionBlock:(void (^)())completionBlock;
 - (void)searchForPeripherals;
 - (void)pushToDevice:(NSString *)str;
+- (void)disconnectDevice;
 
 @end

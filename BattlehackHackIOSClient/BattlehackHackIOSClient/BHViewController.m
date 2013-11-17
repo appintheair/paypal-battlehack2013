@@ -147,6 +147,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:uuid forKey:@"current_uuid"];
         [controller getDonationDetailsByUUID:uuid];
     }];
+    [_controller setDisconnectCompletionBlock:^{
+        
+    }];
     [_controller searchForPeripherals];
     [PayPalPaymentViewController setEnvironment:PayPalEnvironmentSandbox];
     [PayPalPaymentViewController prepareForPaymentUsingClientId:@"AWQdTxBG_q1-ouXyg8BIhBmJ39wz-nx_mU2nS62x4kRNTCFYVO3Z0tZcV8wO"];
@@ -287,6 +290,7 @@
     [_nTitleLabel removeFromSuperview];
     [_doneButton setHidden:YES];
     [_menIcon setImage:[UIImage imageNamed:@"people2.png"]];
+    [_backButton setHidden:YES];
     
     [_filterView2 addSubview:_thankYouLabel];
     [_thankYouLabel setHidden:NO];
@@ -294,6 +298,14 @@
     {
         [_inviteButton setHidden:NO];
     }
+    [_controller performSelector:@selector(disconnectDevice) withObject:Nil afterDelay:5.f];
+    [self performSelector:@selector(showForegroundView) withObject:nil afterDelay:5.f];
+}
+
+- (void)showForegroundView
+{
+    [self switchToFirstLayer];
+    [_foregroundView setHidden:NO];
 }
 
 - (void)makePayment:(NSInteger)amount
@@ -380,20 +392,19 @@
 
 - (void)payPalPaymentDidComplete:(PayPalPayment *)completedPayment
 {
-//    NSString *currentUUID = [[NSUserDefaults standardUserDefaults] stringForKey:@"current_uuid"];
-    NSString *currentUUID = @"1";
+    NSString *currentUUID = [[NSUserDefaults standardUserDefaults] stringForKey:@"current_uuid"];
     NSString *email = @"q.pronin-facilitator@gmail.com";
     NSData *receipt = [NSJSONSerialization dataWithJSONObject:completedPayment.confirmation
                                                       options:0
                                                         error:nil];
     [_updateDetailsHandler updateDonationDetailsWithID:currentUUID AndAmount:completedPayment.amount ByUser:email WithReceipt:receipt WithCompletionBlock:^{
-        [_controller pushToDevice:[NSString stringWithFormat:@"%ld", (long)_amount]];
         _donatorsNumber += 1;
         _donation = [completedPayment.amount integerValue];
         _amount += [completedPayment.amount integerValue];
+        [_controller pushToDevice:[NSString stringWithFormat:@"%ld", (long)_amount]];
         [self dismissViewControllerAnimated:YES completion:nil];
         [self switchToThirdLayer];
-        afterDonationStatus = YES;
+        afterDonationStatus = NO;
     }];
 }
 

@@ -452,7 +452,7 @@ static int rssi = 0;
     if (peripheral.identifier != NULL)
         NSLog(@"Connected to %@ successful", peripheral.identifier.UUIDString);
     else
-        NSLog(@"Connected to NULL successful");
+        NSLog(@"Connected to NULL p");
     
     self.activePeripheral = peripheral;
     [self.activePeripheral discoverServices:nil];

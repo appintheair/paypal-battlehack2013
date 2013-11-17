@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F17B12C11838D745007DFAA1 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F17B12C01838D745007DFAA1 /* libPayPalMobile.a */; };
+		FA4CFEB718393B1E0098DD67 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4CFEB618393B1E0098DD67 /* splash.png */; };
+		FA4CFEB9183941750098DD67 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4CFEB8183941750098DD67 /* back.png */; };
 		FA58D1A018381980005C8239 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D19F18381980005C8239 /* Foundation.framework */; };
 		FA58D1A218381980005C8239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D1A118381980005C8239 /* CoreGraphics.framework */; };
 		FA58D1A418381980005C8239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA58D1A318381980005C8239 /* UIKit.framework */; };
@@ -74,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		F17B12C01838D745007DFAA1 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = "../../../../Downloads/PayPal-iOS-SDK-master/PayPalMobile/libPayPalMobile.a"; sourceTree = "<group>"; };
+		FA4CFEB618393B1E0098DD67 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		FA4CFEB8183941750098DD67 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		FA58D19C18381980005C8239 /* BattlehackHackIOSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BattlehackHackIOSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA58D19F18381980005C8239 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA58D1A118381980005C8239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -323,6 +327,8 @@
 		FAC6144A183853910009CEB3 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				FA4CFEB8183941750098DD67 /* back.png */,
+				FA4CFEB618393B1E0098DD67 /* splash.png */,
 				FAAB585F1838E9CF0025655A /* arrow.png */,
 				FAAB581A1838740B0025655A /* 10.png */,
 				FAAB581B1838740B0025655A /* 20.png */,
@@ -426,6 +432,7 @@
 				FAAB582B1838740B0025655A /* people2.png in Resources */,
 				FAAB58601838E9CF0025655A /* arrow.png in Resources */,
 				FAAB582A1838740B0025655A /* people.png in Resources */,
+				FA4CFEB718393B1E0098DD67 /* splash.png in Resources */,
 				FA58D1AA18381980005C8239 /* InfoPlist.strings in Resources */,
 				FAAB58291838740B0025655A /* gradient.png in Resources */,
 				FAAB583C1838B02B0025655A /* PTN77F.ttf in Resources */,
@@ -435,6 +442,7 @@
 				FAAB58261838740B0025655A /* 10.png in Resources */,
 				FAAB58311838740B0025655A /* point1.png in Resources */,
 				FA58D1B318381980005C8239 /* Main.storyboard in Resources */,
+				FA4CFEB9183941750098DD67 /* back.png in Resources */,
 				FAAB583D1838B02B0025655A /* PTS75F.ttf in Resources */,
 				FAAB583A1838B02B0025655A /* PTC55F.ttf in Resources */,
 				FAAB58411838B02B0025655A /* PTS76F.ttf in Resources */,

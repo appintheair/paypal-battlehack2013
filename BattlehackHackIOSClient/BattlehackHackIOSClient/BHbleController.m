@@ -66,6 +66,11 @@ static BHbleController *_instance;
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [_shield write:data];
     
+}
+
+- (void)disconnectDevice
+{
+    NSLog(@"disconnect");
     if (_shield.activePeripheral.state == CBPeripheralStateConnected)
     {
         [[_shield CM] cancelPeripheralConnection:[_shield activePeripheral]];
