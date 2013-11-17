@@ -8,13 +8,13 @@
         <option name="templatesFolder" value="" />
         <option name="email" value="bayram.annakov@gmail.com" />
         <option name="gp" value="dfe8dfcbdfd3dfd8dfcbdfc7dfc1dfcbdf9adf9fdf9bdf98" />
-        <option name="oauth2" value="true" />
+        <option name="oauth2" value="false" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 2.7.2 (/Library/Frameworks/Python.framework/Versions/2.7/bin/python)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 2.7.1 (/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Google App Engine SDK" level="project" />
   </component>
