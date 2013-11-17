@@ -12,7 +12,7 @@ void setup() {
   Wire.begin();
   ble_begin();
   
-  Serial.begin(57600);  
+  Serial.begin(9600);  
   
   setupTune();
 }
@@ -27,7 +27,8 @@ void loop() {
   }
   
   while(Serial.available()) {
-    sendValue(Serial.read());
+    int x = Serial.read();
+    sendValue(x);
   }
   
   numbers = 0;
