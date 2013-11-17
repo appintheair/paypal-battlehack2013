@@ -1,9 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ededed"
+    android:orientation="vertical"
     tools:context=".MainActivity"
     tools:ignore="MergeRootFrame" >
 
@@ -31,11 +32,87 @@
             android:layout_alignBottom="@id/ivGradient"
             android:textColor="@android:color/white"
             android:layout_marginBottom="80dp"
-            android:textSize="16pt"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14pt"
             android:id="@+id/tvTitle"
             android:text="Bla bla bla"
             />
 
-        </RelativeLayout>
 
-    </LinearLayout>
+        <ImageView
+            android:layout_alignBottom="@id/ivGradient"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/people"
+            android:id="@+id/ivPeople"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivPeople"
+            android:layout_alignTop="@id/ivPeople"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12pt"
+            android:textColor="#99a7aa"
+            android:id="@+id/tvPeople"
+            android:text="345"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/ivPeople"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12pt"
+            android:textColor="#3282a1"
+            android:id="@+id/tvRaised"
+            android:text="$2000"
+            />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/amount20"
+            android:id="@+id/buttonAmount20"
+            android:layout_below="@id/ivPeople"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/amount10"
+            android:id="@+id/buttonAmount10"
+            android:layout_alignTop="@id/buttonAmount20"
+            android:layout_toLeftOf="@id/buttonAmount20"
+            android:layout_marginRight="20dp"
+            />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:src="@drawable/edit"
+            android:id="@+id/buttonCustom"
+            android:layout_alignTop="@id/buttonAmount20"
+            android:layout_toRightOf="@id/buttonAmount20"
+            android:layout_marginLeft="20dp"
+            />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

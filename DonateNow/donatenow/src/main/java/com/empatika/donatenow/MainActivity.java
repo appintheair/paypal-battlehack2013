@@ -2,6 +2,9 @@ package com.empatika.donatenow;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +19,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -36,6 +42,9 @@ public class MainActivity extends FragmentActivity {
 
     ViewPager pager;
     Donation donation;
+
+    TextView tvPeople;
+    TextView tvRaised;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +77,59 @@ public class MainActivity extends FragmentActivity {
 
         TextView tvTitle = (TextView)findViewById(R.id.tvTitle);
         tvTitle.setText(donation.title);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        tvTitle.setTypeface(tf);
+
+        tvPeople = (TextView)findViewById(R.id.tvPeople);
+        tvPeople.setText(String.format("%d", donation.voters));
+        tvPeople.setTypeface(tf);
+
+        tvRaised = (TextView)findViewById(R.id.tvRaised);
+        tvRaised.setText(String.format("$%d", donation.amountRaised));
+        tvRaised.setTypeface(tf);
+
+        ((ImageButton)findViewById(R.id.buttonAmount10)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                payWithAmount(10);
+            }
+        });
+
+        ((ImageButton)findViewById(R.id.buttonAmount20)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                payWithAmount(20);
+            }
+        });
+
+        ((ImageButton)findViewById(R.id.buttonCustom)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("Enter your amount");
+                alert.setMessage("Choose how much you can donate");
+                final EditText input = new EditText(MainActivity.this);
+                alert.setView(input);
+
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        payWithAmount(Integer.parseInt(input.getText().toString()));
+                    }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                });
+                alert.show();
+            }
+        });
+    }
+
+    private void payWithAmount(int amount) {
+
     }
 
     @Override
