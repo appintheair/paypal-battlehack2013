@@ -15,12 +15,22 @@
 # limitations under the License.
 #
 import webapp2
-from handlers.handlers import GetDonationDetails,CreateEntitites,GetDonationDonators,GetActiveDonations,GetFinishedDonations
+from handlers import api
+from handlers.handlers import CreateEntitites
 from handlers.web import GetDonationsList, GetDonatorsList, CreateDonation
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+        self.redirect('/donations', permanent=True)
 
-app = webapp2.WSGIApplication([('/', MainHandler), ('/getDonationDetails',GetDonationDetails),('/createEntities',CreateEntitites),('/getDonationDonators',GetDonationDonators),('/getActiveDonations',GetActiveDonations),('/getFinishedDonations',GetFinishedDonations),('/donations',GetDonationsList),('/donators',GetDonatorsList),('/createDonation',CreateDonation)],
+app = webapp2.WSGIApplication([('/', MainHandler),
+                               ('/getDonationDetails', api.GetDonationDetails),
+                               ('/createEntities', CreateEntitites),
+                               ('/getDonationDonators', api.GetDonationDonators),
+                               ('/getActiveDonations', api.GetActiveDonations),
+                               ('/getFinishedDonations', api.GetFinishedDonations),
+                               ('/donations', GetDonationsList),
+                               ('/donators', GetDonatorsList),
+                               ('/createDonation', CreateDonation)],
                               debug=True)

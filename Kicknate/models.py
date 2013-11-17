@@ -21,8 +21,6 @@ class Donation(ndb.Model):
     finished = ndb.BooleanProperty(default=False)
     is_kickstarter_type = ndb.BooleanProperty(default=False)
 
-
-
     def to_dict(self):
         response = super(Donation, self).to_dict()
         response['date_added'] = utils.to_int(response['date_added'])
