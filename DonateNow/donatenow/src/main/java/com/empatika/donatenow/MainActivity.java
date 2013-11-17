@@ -17,6 +17,8 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
@@ -89,6 +91,9 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //I need it just because keyboard is not working
+//        setUpWifi();
+
         setUpImageLoader();
         setUpPayPal();
 
@@ -96,6 +101,23 @@ public class MainActivity extends FragmentActivity {
 
 
 //        loadDonationDetails("1");
+    }
+
+    private void setUpWifi() {
+        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiConfiguration wc = new WifiConfiguration();
+        wc.SSID = "\"eBayGuest\"";
+        wc.preSharedKey = "\"BuyItNow!\"";
+        wc.status = WifiConfiguration.Status.ENABLED;
+        wc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+        wc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+        wc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+        wc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+        wc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+        wc.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+        int netId = wifiManager.addNetwork(wc);
+        wifiManager.enableNetwork(netId, true);
+        wifiManager.setWifiEnabled(true);
     }
 
     @Override
